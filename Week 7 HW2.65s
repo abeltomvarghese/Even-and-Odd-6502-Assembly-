@@ -1,0 +1,65 @@
+	*= $2000	
+io_area = $e000
+io_cls	= io_area + 0
+io_putc = io_area + 1 
+io_putr	= io_area + 2
+io_puth	= io_area + 3	; put as hex number
+io_getc	= io_area + 4	; get char
+
+PRINTINPUT
+	LDX #$00
+	
+LOOP
+	LDA MSG,X
+	BEQ LOOPF
+	STA io_putc
+	INX
+	JMP LOOP
+
+LOOPF 
+	JMP INPUT
+
+
+INPUT
+	LDA io_getc
+	BEQ INPUT
+	STA io_putc
+	
+	;STA Num1
+	;LDA Num1
+	ROR 
+	BCC EVEN
+	BCS ODD	
+
+
+
+EVEN	
+	LDX #$00
+	
+LOOPEVEN
+	LDA MSGE,X
+	BEQ LOOPND
+	STA io_putc
+	INX
+	JMP LOOPEVEN
+		
+LOOPND  
+	BRK
+
+	
+ODD
+	LDY #$00
+	
+LOOPO
+	LDA MSGO,Y
+	BEQ LOOPOD
+	STA io_putc
+	INY
+	JMP LOOPO	
+LOOPOD  BRK	
+	
+
+Num1:	.DB $00	
+MSGE: 	.ASCII "Even Number",$00
+MSGO:	.ASCII "Odd Number", $00
+MSG:    .ASCII "Please enter a number between 1 and 9: ",$00
