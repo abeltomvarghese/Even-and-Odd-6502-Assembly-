@@ -8,4 +8,4 @@ A link to **[6502 Assembly instruction set](http://www.obelisk.me.uk/6502/refere
 The input would be an integer value that is between the range of 1 and 9.
 
 ## Output 
-The output, depending on the input, would a message such as ***"Even number"*** or ***"Odd Number***
+The output, depending on the input, would a message such as ***"Even number"*** or ***"Odd Number"***
